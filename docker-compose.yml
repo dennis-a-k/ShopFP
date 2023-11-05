@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  #NGINX
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/logs:/var/log/nginx/logs
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+    container_name: ${DOCKER_PREFIX}_nginx
+
+  #САЙТ по аддресу http://localhost:8080
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - ./src:/var/www/src
+    depends_on:
+      - db
+    container_name: ${DOCKER_PREFIX}_app
+
+  #БАЗА ДАННЫХ
+  db:
+    image: mysql:latest
+    restart: always
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 7080:3306
+    command: mysqld
+      --character-set-server=utf8
+      --collation-server=utf8_unicode_ci
+      --default-authentication-plugin=mysql_native_password
+    container_name: ${DOCKER_PREFIX}_db
+
+  #ПАНЕЛЬ БД по адресу http://localhost:6080
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - 6080:80
+    container_name: ${DOCKER_PREFIX}_phpmyadmin
