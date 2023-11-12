@@ -19,7 +19,7 @@
         <form id="quickForm" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="card-body">
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <x-input-error :messages="$errors->get('email')" />
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Почта</label>
@@ -42,11 +42,13 @@
                 </div>
 
                 <div class="d-flex flex-wrap justify-content-end align-items-center">
-                    @if (Route::has('password.request'))
-                        <a class="text-dark" href="{{ route('password.request') }}">
-                            {{ __('Забыли пароль?') }}
-                        </a>
-                    @endif
+                    <a class="text-dark" href="{{ route('register') }}">
+                        {{ __('Регистрация') }}
+                    </a>
+
+                    <a class="text-dark ml-2" href="{{ route('password.request') }}">
+                        {{ __('Забыли пароль?') }}
+                    </a>
 
                     <button type="submit" class="btn btn-info ml-2">Войти</button>
                 </div>
