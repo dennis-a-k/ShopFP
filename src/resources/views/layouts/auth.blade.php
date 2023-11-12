@@ -21,11 +21,6 @@
 
 <body class="hold-transition">
     <div class="wrapper">
-
-        <!-- Preloader -->
-        @include('components.preloader')
-        <!-- /.preloader -->
-
         <!-- Content Wrapper. Contains page content -->
         <main class="content">
             <!-- Main content -->

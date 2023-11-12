@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Вход')
+@section('title', 'Восстановление пароля')
 
 @section('css')
     <style type="text/css">
@@ -16,7 +16,7 @@
     <!-- jquery validation -->
     <div class="card">
         <!-- form start -->
-        <form id="quickForm" method="POST" action="{{ route('login') }}">
+        <form id="quickForm" method="POST" action="{{ route('password.email') }}">
             @csrf
             <div class="card-body">
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -27,28 +27,14 @@
                         placeholder="Введите почту" value="{{ old('email') }}">
                 </div>
 
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Пароль</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                        placeholder="Введите пароль">
-                </div>
-
-                <div class="form-group mb-0">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="remember" class="custom-control-input custom-control-input-info"
-                            id="exampleCheck1">
-                        <label class="custom-control-label" for="exampleCheck1">Запомнить меня</label>
-                    </div>
-                </div>
-
                 <div class="d-flex flex-wrap justify-content-end align-items-center">
-                    @if (Route::has('password.request'))
-                        <a class="text-dark" href="{{ route('password.request') }}">
-                            {{ __('Забыли пароль?') }}
+                    @if (Route::has('login'))
+                        <a class="text-dark" href="{{ route('login') }}">
+                            {{ __('Войти') }}
                         </a>
                     @endif
 
-                    <button type="submit" class="btn btn-info ml-2">Войти</button>
+                    <button type="submit" class="btn btn-info ml-2">Восстановить</button>
                 </div>
             </div>
             <!-- /.card-body -->
@@ -70,21 +56,11 @@
                         required: true,
                         email: true,
                     },
-                    password: {
-                        required: true,
-                        minlength: 6,
-                        password: true,
-                    },
                 },
                 messages: {
                     email: {
                         required: "Введите адрес электронной почты",
                         email: "Почта введена неверно",
-                    },
-                    password: {
-                        required: "Введите пароль",
-                        minlength: "Минимальная длинна пароля 6 символов",
-                        password: "Пароль введён неверно",
                     },
                 },
                 errorElement: 'span',

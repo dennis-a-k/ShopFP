@@ -2,9 +2,6 @@
 
 @section('title', 'Главная')
 
-@section('css')
-@endsection
-
 @section('content-header')
     <div class="content-header">
         <div class="container-fluid">
@@ -92,7 +89,4 @@
     <div class="row">
     </div>
     <!-- /.row (main row) -->
-@endsection
-
-@section('js')
 @endsection
