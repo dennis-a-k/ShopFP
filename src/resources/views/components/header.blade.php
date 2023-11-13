@@ -1,5 +1,4 @@
 <header>
-
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
@@ -16,7 +15,10 @@
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
-            <!-- Notifications Dropdown Menu -->
+            <!-- Dropdown Menu -->
+            @include('components.dropdown')
+
+            <!-- Size -->
             <li class="nav-item">
                 <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                     <i class="fas fa-expand-arrows-alt"></i>
@@ -24,5 +26,4 @@
             </li>
         </ul>
     </nav>
-
 </header>
