@@ -13,94 +13,58 @@
 @endsection
 
 @section('content')
-    <!-- jquery validation -->
-    <div class="card">
-        <!-- form start -->
-        <form id="quickForm" method="POST" action="{{ route('login') }}">
-            @csrf
-            <div class="card-body">
-                <x-input-error :messages="$errors->get('email')" />
+    <p class="login-box-msg">Вход</p>
 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Почта</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                        placeholder="Введите почту" value="{{ old('email') }}">
-                </div>
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Пароль</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                        placeholder="Введите пароль">
-                </div>
+        <x-input-error :messages="$errors->get('email')" />
 
-                <div class="form-group mb-0">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="remember" class="custom-control-input custom-control-input-info"
-                            id="exampleCheck1">
-                        <label class="custom-control-label" for="exampleCheck1">Запомнить меня</label>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-wrap justify-content-end align-items-center">
-                    <a class="text-dark" href="{{ route('register') }}">
-                        {{ __('Регистрация') }}
-                    </a>
-
-                    <a class="text-dark ml-2" href="{{ route('password.request') }}">
-                        {{ __('Забыли пароль?') }}
-                    </a>
-
-                    <button type="submit" class="btn btn-info ml-2">Войти</button>
+        <div class="input-group mb-3">
+            <input type="email" class="form-control" name="email" placeholder="Введите почту" value="{{ old('email') }}">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
                 </div>
             </div>
-            <!-- /.card-body -->
-        </form>
-    </div>
-    <!-- /.card -->
-@endsection
+        </div>
 
-@section('js')
-    <!-- jquery-validation -->
-    <script src="{{ URL::asset('adminlte/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
-    <script src="{{ URL::asset('adminlte/plugins/jquery-validation/additional-methods.min.js') }}"></script>
-    <!-- Page specific script -->
-    <script>
-        $(function() {
-            $('#quickForm').validate({
-                rules: {
-                    email: {
-                        required: true,
-                        email: true,
-                    },
-                    password: {
-                        required: true,
-                        minlength: 6,
-                        password: true,
-                    },
-                },
-                messages: {
-                    email: {
-                        required: "Введите адрес электронной почты",
-                        email: "Почта введена неверно",
-                    },
-                    password: {
-                        required: "Введите пароль",
-                        minlength: "Минимальная длинна пароля 6 символов",
-                        password: "Пароль введён неверно",
-                    },
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-        });
-    </script>
+        <x-input-error :messages="$errors->get('password')" />
+
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Введите пароль">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="icheck-info">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">
+                        Запомнить меня
+                    </label>
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+                <button type="submit" class="btn btn-info btn-block">Войти</button>
+            </div>
+            <!-- /.col -->
+        </div>
+    </form>
+
+    <p class="mb-1">
+        <a class="text-info" href="{{ route('password.request') }}">
+            Восстановить пароль
+        </a>
+    </p>
+    <p class="mb-0">
+        <a class="text-info" href="{{ route('register') }}">
+            Регистрация
+        </a>
+    </p>
 @endsection

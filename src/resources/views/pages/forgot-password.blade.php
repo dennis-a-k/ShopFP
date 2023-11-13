@@ -13,68 +13,37 @@
 @endsection
 
 @section('content')
-    <!-- jquery validation -->
-    <div class="card">
-        <!-- form start -->
-        <form id="quickForm" method="POST" action="{{ route('password.email') }}">
-            @csrf
-            <div class="card-body">
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <p class="login-box-msg">Восстановление пароля</p>
 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Почта</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                        placeholder="Введите почту" value="{{ old('email') }}">
-                </div>
+    <form method="POST" action="{{ route('password.email') }}">
+        @csrf
 
-                <div class="d-flex flex-wrap justify-content-end align-items-center">
-                    @if (Route::has('login'))
-                        <a class="text-dark" href="{{ route('login') }}">
-                            {{ __('Войти') }}
-                        </a>
-                    @endif
+        <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
-                    <button type="submit" class="btn btn-info ml-2">Восстановить</button>
+        <div class="input-group mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Введите почту" value="{{ old('email') }}">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
                 </div>
             </div>
-            <!-- /.card-body -->
-        </form>
-    </div>
-    <!-- /.card -->
-@endsection
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-info btn-block">Восстановить пароль</button>
+            </div>
+            <!-- /.col -->
+        </div>
+    </form>
 
-@section('js')
-    <!-- jquery-validation -->
-    <script src="{{ URL::asset('adminlte/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
-    <script src="{{ URL::asset('adminlte/plugins/jquery-validation/additional-methods.min.js') }}"></script>
-    <!-- Page specific script -->
-    <script>
-        $(function() {
-            $('#quickForm').validate({
-                rules: {
-                    email: {
-                        required: true,
-                        email: true,
-                    },
-                },
-                messages: {
-                    email: {
-                        required: "Введите адрес электронной почты",
-                        email: "Почта введена неверно",
-                    },
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                }
-            });
-        });
-    </script>
+    <p class="mt-3 mb-1">
+        <a class="text-info" href="{{ route('login') }}">
+            Войти
+        </a>
+    </p>
+    <p class="mb-0">
+        <a class="text-info" href="{{ route('register') }}">
+            Регистрация
+        </a>
+    </p>
 @endsection
