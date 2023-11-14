@@ -1,6 +1,6 @@
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-        <span class="">{{ Auth::user()->name }}</span>
+        <span>{{ Auth::user()->name }}</span>
     </a>
     <div class="dropdown-menu dropdown-menu-right" style="left: inherit; right: 0px;">
         <a href="{{ route('profile.edit') }}" class="dropdown-item">
