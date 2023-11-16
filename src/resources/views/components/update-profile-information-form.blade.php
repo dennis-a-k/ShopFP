@@ -18,7 +18,7 @@
                         <label for="inputName">Имя пользователя</label>
                         <input type="text" id="inputName"
                             class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name"
-                            value="{{ old('name', $user->name) }}" required autocomplete="name">
+                            value="{{ old('name', $user->name) }}" required autofocus autocomplete="name">
                         <x-input-error class="ml-2" :messages="$errors->get('name')" />
                     </div>
                 </div>
