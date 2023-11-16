@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link text-center">
+    <a href="{{ route('admin') }}" class="brand-link text-center">
         <span class="brand-text font-weight-light">Админ панель</span>
     </a>
 
@@ -13,29 +13,29 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-table"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Tables
+                            Список
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/tables/simple.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Simple Tables</p>
+                            <a href="{{ route('admins.list') }}" class="nav-link">
+                                <i class="fas fa-user-tie nav-icon"></i>
+                                <p>Администраторы</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('users.list') }}" class="nav-link">
+                                <i class="fas fa-user-friends nav-icon"></i>
+                                <p>Клиенты</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/tables/data.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>DataTables</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/tables/jsgrid.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>jsGrid</p>
+                                <i class="fas fa-user-plus nav-icon"></i>
+                                <p>Добавить</p>
                             </a>
                         </li>
                     </ul>

@@ -15,31 +15,24 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ URL::asset('adminlte/dist/css/adminlte.min.css') }}">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <!-- Vite -->
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
     @yield('css')
 </head>
 
-<body class="hold-transition">
-    <div class="wrapper">
-        <!-- Content Wrapper. Contains page content -->
-        <main class="content">
-            <!-- Main content -->
-            <div class="container-fluid">
-                <div class="row d-flex justify-content-center">
-                    <!-- left column -->
-                    <div class="col-lg-4 mt-5">
+<body class="hold-transition login-page">
+    <main class="login-box">
+        <div class="card">
+            <div class="card-body login-card-body">
 
-                        @yield('content')
+                @yield('content')
 
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
-            <!-- /.content -->
-        </main>
-        <!-- /.content-wrapper -->
-    </div>
-    <!-- ./wrapper -->
-
+            </div>
+        </div>
+    </main>
     <!-- jQuery -->
     <script src="{{ URL::asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
