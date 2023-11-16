@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ URL::asset('adminlte/dist/css/adminlte.min.css') }}">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <!-- Vite -->
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
     @yield('css')
 </head>

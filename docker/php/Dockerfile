@@ -28,7 +28,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 RUN echo "alias a='artisan'" >> /root/.bashrc
 
 #Установка Node.js
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs
 
 WORKDIR /var/www
