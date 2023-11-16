@@ -13,7 +13,7 @@ class UsersController extends Controller
      */
     public function getUsers()
     {
-        $users = User::orderBy('name', 'ASC')->paginate(8);
+        $users = User::where('role', 'user')->orderBy('name', 'ASC')->paginate(8);
         return view('pages.users.users', ['users' => $users]);
     }
 
@@ -22,7 +22,7 @@ class UsersController extends Controller
      */
     public function getAdmins()
     {
-        $admins = User::orderBy('name', 'ASC')->paginate(8);
+        $admins = User::whereIn('role', ['admin', 'moderator'])->orderBy('name', 'ASC')->paginate(8);
         return view('pages.users.admins', ['users' => $admins]);
     }
 

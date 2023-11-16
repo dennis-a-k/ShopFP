@@ -37,7 +37,14 @@
                                 {{ $user->email }}
                             </td>
                             <td class="project-state">
-                                <span class="badge badge-success">Success</span>
+                                @if ($user->role == 'admin')
+                                    <span class="badge badge-success">Администратор</span>
+                                @elseif ($user->role == 'moderator')
+                                    <span class="badge badge-info">Модератор</span>
+                                @else
+                                    <span class="badge badge-secondary">Пользователь</span>
+                                @endif
+
                             </td>
                             <td class="project-actions text-right">
                                 <a class="btn btn-primary btn-sm" href="#">
