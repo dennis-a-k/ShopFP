@@ -18,45 +18,56 @@
         @csrf
 
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        <div class="input-group mb-3">
-            <input type="text" name="name" class="form-control" placeholder="Укажите ваше имя"
-                value="{{ old('name') }}">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-user"></span>
+        <div class="{{ $errors->has('name') ? 'input' : 'input-group' }} mb-3">
+            <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                placeholder="Укажите ваше имя" value="{{ old('name') }}" required autofocus>
+            @if (!$errors->has('name'))
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Укажите вашу почту"
-                value="{{ old('email') }}">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
+        <div class="{{ $errors->has('email') ? 'input' : 'input-group' }} mb-3">
+            <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                placeholder="Укажите вашу почту" value="{{ old('email') }}" required>
+            @if (!$errors->has('email'))
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Придумайте пароль">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
+        <div class="{{ $errors->has('password') ? 'input' : 'input-group' }} mb-3">
+            <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                placeholder="Придумайте пароль" required>
+            @if (!$errors->has('password'))
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        <div class="input-group mb-3">
-            <input type="password" name="password_confirmation" class="form-control" placeholder="Подтвердите пароль">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
+        <div class="{{ $errors->has('password_confirmation') ? 'input' : 'input-group' }} mb-3">
+            <input type="password" name="password_confirmation"
+                class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}"
+                placeholder="Подтвердите пароль" required>
+            @if (!$errors->has('password_confirmation'))
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-12">

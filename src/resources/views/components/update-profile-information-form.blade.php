@@ -16,18 +16,20 @@
                 <div class="form-group">
                     <div>
                         <label for="inputName">Имя пользователя</label>
+                        <input type="text" id="inputName"
+                            class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name"
+                            value="{{ old('name', $user->name) }}" required autocomplete="name">
                         <x-input-error class="ml-2" :messages="$errors->get('name')" />
-                        <input type="text" id="inputName" class="form-control" name="name"
-                            value="{{ old('name', $user->name) }}" required autofocus autocomplete="name">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div>
                         <label for="inputEmail">Электронная почта</label>
+                        <input type="email" id="inputEmail"
+                            class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email"
+                            value="{{ old('email', $user->email) }}" required autocomplete="username">
                         <x-input-error class="ml-2" :messages="$errors->get('email')" />
-                        <input type="email" id="inputEmail" class="form-control" name="email"
-                            value="{{ old('name', $user->email) }}" required autofocus autocomplete="username">
 
                         @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                             <div>

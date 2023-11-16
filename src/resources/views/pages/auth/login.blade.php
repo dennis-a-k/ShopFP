@@ -19,25 +19,29 @@
         @csrf
 
         <x-input-error :messages="$errors->get('email')" />
-
-        <div class="input-group mb-3">
-            <input type="email" class="form-control" name="email" placeholder="Введите почту" value="{{ old('email') }}">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-envelope"></span>
+        <div class="{{ $errors->has('email') ? 'input' : 'input-group' }} mb-3">
+            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email"
+                placeholder="Введите почту" value="{{ old('email') }}" required autofocus>
+            @if (!$errors->has('email'))
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <x-input-error :messages="$errors->get('password')" />
-
-        <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Введите пароль">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
+        <div class="{{ $errors->has('password') ? 'input' : 'input-group' }} mb-3">
+            <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password"
+                placeholder="Введите пароль" required>
+            @if (!$errors->has('password'))
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <div class="row">

@@ -12,27 +12,30 @@
                 <div class="form-group">
                     <div>
                         <label for="current_password">Текущий пароль</label>
+                        <input type="password" id="current_password"
+                            class="form-control {{ $errors->updatePassword->get('current_password') ? 'is-invalid' : '' }}"
+                            name="current_password" autocomplete="current-password">
                         <x-input-error class="ml-2" :messages="$errors->updatePassword->get('current_password')" />
-                        <input type="password" id="current_password" class="form-control" name="current_password"
-                            autocomplete="current-password">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div>
                         <label for="password">Новый пароль</label>
+                        <input type="password" id="password"
+                            class="form-control {{ $errors->updatePassword->get('password') ? 'is-invalid' : '' }}"
+                            name="password" autocomplete="new-password">
                         <x-input-error class="ml-2" :messages="$errors->updatePassword->get('password')" />
-                        <input type="password" id="password" class="form-control" name="password"
-                            autocomplete="new-password">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div>
                         <label for="password_confirmation">Подтвердите пароль</label>
-                        <x-input-error class="ml-2" :messages="$errors->updatePassword->get('password_confirmation')" />
-                        <input type="password" id="password_confirmation" class="form-control"
+                        <input type="password" id="password_confirmation"
+                            class="form-control {{ $errors->updatePassword->get('password_confirmation') ? 'is-invalid' : '' }}"
                             name="password_confirmation" autocomplete="new-password">
+                        <x-input-error class="ml-2" :messages="$errors->updatePassword->get('password_confirmation')" />
                     </div>
                 </div>
 
