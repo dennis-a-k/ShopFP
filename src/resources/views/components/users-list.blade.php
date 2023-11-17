@@ -27,14 +27,14 @@
                                 {{ $user->name }}
                                 <br />
                                 <small>
-                                    Создан 01.01.2019
+                                    Создан {{ $user->created_at->format('d.m.Y') }}
                                 </small>
                             </td>
                             <td>
                                 {{ $user->email }}
                             </td>
-                            <td class="project_progress">
-                                {{ $user->email }}
+                            <td>
+                                {{ $user->phone }}
                             </td>
                             <td class="project-state">
                                 @if ($user->role == 'admin')
