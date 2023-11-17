@@ -65,10 +65,7 @@ class UsersController extends Controller
     public function update(UsersRequest $request, string $id)
     {
         $data = $request->validated();
-        $user = User::find($id);
-        $user->role = $data['role'];
-        $user->save();
-
+        User::where('id', $id)->update(['role' => $data['role']]);
         return back();
     }
 

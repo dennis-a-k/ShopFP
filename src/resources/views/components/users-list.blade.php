@@ -36,6 +36,7 @@
                             <td>
                                 {{ $user->phone }}
                             </td>
+
                             <td class="project-state">
                                 @if ($user->role == 'admin')
                                     <span class="badge badge-success">Администратор</span>
@@ -44,8 +45,8 @@
                                 @else
                                     <span class="badge badge-secondary">Пользователь</span>
                                 @endif
-
                             </td>
+
                             <td class="project-actions text-right">
                                 @if (Auth::user()->role == 'admin')
                                     <button class="btn btn-info btn-sm dropdown-toggle" type="button"
