@@ -23,8 +23,9 @@ class UsersController extends Controller
      */
     public function getAdmins()
     {
+        $getCountAdmins = User::where('role', 'admin')->get()->count();
         $admins = User::whereIn('role', ['admin', 'moderator'])->orderBy('name', 'ASC')->paginate(8);
-        return view('pages.users.admins', ['users' => $admins]);
+        return view('pages.users.admins', ['users' => $admins, 'count' => $getCountAdmins]);
     }
 
     /**

@@ -49,35 +49,51 @@
 
                             <td class="project-actions text-right">
                                 @if (Auth::user()->role == 'admin')
-                                    <button class="btn btn-info btn-sm dropdown-toggle" type="button"
-                                        id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <form method="POST" action="{{ route('user.update', $user->id) }}">
-                                            @csrf
-                                            @method('PATCH')
-                                            <button class="dropdown-item" name="role" value="admin">
-                                                Администратор
-                                            </button>
-                                            <button class="dropdown-item" name="role" value="moderator">
-                                                Модератор
-                                            </button>
-                                            <button class="dropdown-item" name="role" value="user">
-                                                Пользователь
-                                            </button>
-                                        </form>
-                                    </div>
+                                    @if (Auth::user()->id == $user->id && $count == 1)
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button"
+                                            disabled>
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </button>
+                                    @else
+                                        <button class="btn btn-info btn-sm dropdown-toggle" type="button"
+                                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" data-placement="top" title="Редактировать роль">
+                                            <i
+                                                class="fas
+                                            fa-pencil-alt"></i>
+                                        </button>
+
+                                        <!-- Всплывающее окно -->
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <form method="POST" action="{{ route('user.update', $user->id) }}">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button class="dropdown-item" name="role" value="admin">
+                                                    Администратор
+                                                </button>
+                                                <button class="dropdown-item" name="role" value="moderator">
+                                                    Модератор
+                                                </button>
+                                                <button class="dropdown-item" name="role" value="user">
+                                                    Пользователь
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 @endif
 
-                                <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}">
+                                <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}"
+                                    data-toggle="tooltip" data-placement="top" title="Посмотреть профиль">
                                     <i class="fas fa-eye"></i>
                                 </a>
 
-                                @if (Auth::user()->id != $user->id)
+                                @if (Auth::user()->id == $user->id && $count == 1)
+                                    <button class="btn btn-secondary btn-sm disabled">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                @else
                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#staticBackdrop">
+                                        data-target="#staticBackdrop" data-placement="top" title="Удалить">
                                         <i class="fas fa-trash"></i>
                                     </button>
 
@@ -104,10 +120,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                @else
-                                    <button class="btn btn-secondary btn-sm disabled">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
                                 @endif
                             </td>
                         </tr>

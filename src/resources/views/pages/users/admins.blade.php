@@ -26,3 +26,11 @@
     <!-- /.admins-list -->
     {{ $users->onEachSide(0)->links() }}
 @endsection
+
+@section('js')
+    <script>
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="dropdown"]').tooltip();
+        $('[data-toggle="modal"]').tooltip();
+    </script>
+@endsection
