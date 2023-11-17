@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UsersRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -61,9 +62,14 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UsersRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $user = User::find($id);
+        $user->role = $data['role'];
+        $user->save();
+
+        return back();
     }
 
     /**

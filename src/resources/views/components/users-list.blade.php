@@ -47,15 +47,67 @@
 
                             </td>
                             <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="#">
+                                @if (Auth::user()->role == 'admin')
+                                    <button class="btn btn-info btn-sm dropdown-toggle" type="button"
+                                        id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <form method="POST" action="{{ route('user.update', $user->id) }}">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button class="dropdown-item" name="role" value="admin">
+                                                Администратор
+                                            </button>
+                                            <button class="dropdown-item" name="role" value="moderator">
+                                                Модератор
+                                            </button>
+                                            <button class="dropdown-item" name="role" value="user">
+                                                Пользователь
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
+
+                                <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a class="btn btn-info btn-sm" href="#">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+
+                                @if (Auth::user()->id != $user->id)
+                                    <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#staticBackdrop">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+
+                                    <!-- Модальное окно -->
+                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static"
+                                        data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">
+                                                        Подтвердите дейсвие
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Отменить</button>
+                                                    <button type="button" class="btn btn-danger">Удалить</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <button class="btn btn-secondary btn-sm disabled">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
