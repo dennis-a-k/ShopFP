@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddUserRequest;
 use App\Http\Requests\RoleUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -33,29 +35,24 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.users.add-user');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddUserRequest $request)
     {
-        //
+        $user = $request->validated();
+        dd($user);
+        User::firstOrCreate($user);
+        return back()->with('status', 'user-created');
     }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
     {
         //
     }
