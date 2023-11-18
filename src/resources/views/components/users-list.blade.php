@@ -68,13 +68,16 @@
                                             <form method="POST" action="{{ route('user.update', $user->id) }}">
                                                 @csrf
                                                 @method('PATCH')
-                                                <button class="dropdown-item" name="role" value="admin">
+                                                <button class="dropdown-item" type="submit" name="role"
+                                                    value="admin">
                                                     Администратор
                                                 </button>
-                                                <button class="dropdown-item" name="role" value="moderator">
+                                                <button class="dropdown-item" type="submit" name="role"
+                                                    value="moderator">
                                                     Модератор
                                                 </button>
-                                                <button class="dropdown-item" name="role" value="user">
+                                                <button class="dropdown-item" type="submit" name="role"
+                                                    value="user">
                                                     Пользователь
                                                 </button>
                                             </form>
@@ -93,7 +96,8 @@
                                     </button>
                                 @else
                                     <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#staticBackdrop" data-placement="top" title="Удалить">
+                                        data-target="#staticBackdrop" data-placement="top" data-id="{{ $user->id }}"
+                                        data-name="{{ $user->name }}" title="Удалить">
                                         <i class="fas fa-trash"></i>
                                     </button>
 
@@ -112,10 +116,23 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
+                                                <div class="modal-body">
+                                                    <h5 class="modal-text text-center">Удалить?</h5>
+                                                </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Отменить</button>
-                                                    <button type="button" class="btn btn-danger">Удалить</button>
+                                                        data-dismiss="modal">
+                                                        Отменить
+                                                    </button>
+
+                                                    <form method="POST" action="{{ route('user.destroy') }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger modal-id"
+                                                            name="id" value="">
+                                                            Удалить
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

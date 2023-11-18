@@ -28,9 +28,21 @@
 @endsection
 
 @section('js')
-    <script>
+    <script type="text/javascript">
+        //всплывающие подсказки над кнопками
         $('[data-toggle="tooltip"]').tooltip();
         $('[data-toggle="dropdown"]').tooltip();
         $('[data-toggle="modal"]').tooltip();
+
+        //модалка для удаление пользователя
+        $('#staticBackdrop').on('show.bs.modal', function(event) {
+            const button = $(event.relatedTarget)
+            const id = button.data('id')
+            const name = button.data('name')
+
+            const modal = $(this)
+            modal.find('.modal-text').text('Удалить ' + name + '? ')
+            modal.find('.modal-id').attr('value', id)
+        })
     </script>
 @endsection
