@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UsersRequest;
+use App\Http\Requests\RoleUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -63,7 +63,7 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UsersRequest $request, string $id)
+    public function update(RoleUserRequest $request, string $id)
     {
         $data = $request->validated();
         User::where('id', $id)->update(['role' => $data['role']]);
@@ -75,7 +75,11 @@ class UsersController extends Controller
      */
     public function destroy(Request $request)
     {
-        User::find($request['id'])->delete();
+        $request->validate([
+            'id' => ['required', 'string'],
+        ]);
+
+        User::find($request->id)->delete();
         return back();
     }
 }
