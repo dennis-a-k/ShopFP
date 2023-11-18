@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddUserRequest;
+use App\Http\Requests\RoleUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -13,7 +16,7 @@ class UsersController extends Controller
      */
     public function getUsers()
     {
-        $users = User::orderBy('name', 'ASC')->paginate(8);
+        $users = User::where('role', 'user')->orderBy('name', 'ASC')->paginate(8);
         return view('pages.users.users', ['users' => $users]);
     }
 
@@ -22,8 +25,9 @@ class UsersController extends Controller
      */
     public function getAdmins()
     {
-        $admins = User::orderBy('name', 'ASC')->paginate(8);
-        return view('pages.users.admins', ['users' => $admins]);
+        $getCountAdmins = User::where('role', 'admin')->get()->count();
+        $admins = User::whereIn('role', ['admin', 'moderator'])->orderBy('name', 'ASC')->paginate(8);
+        return view('pages.users.admins', ['users' => $admins, 'count' => $getCountAdmins]);
     }
 
     /**
@@ -31,15 +35,18 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.users.add-user');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddUserRequest $request)
     {
-        //
+        $user = $request->validated();
+        dd($user);
+        User::firstOrCreate($user);
+        return back()->with('status', 'user-created');
     }
 
     /**
@@ -51,26 +58,25 @@ class UsersController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(RoleUserRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        User::where('id', $id)->update(['role' => $data['role']]);
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $request->validate([
+            'id' => ['required', 'string'],
+        ]);
+
+        User::find($request->id)->delete();
+        return back();
     }
 }

@@ -33,7 +33,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/data.html" class="nav-link">
+                            <a href="{{ route('user.create') }}" class="nav-link">
                                 <i class="fas fa-user-plus nav-icon"></i>
                                 <p>Добавить</p>
                             </a>

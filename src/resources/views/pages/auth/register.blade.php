@@ -30,6 +30,19 @@
             @endif
         </div>
 
+        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+        <div class="{{ $errors->has('phone') ? 'input' : 'input-group' }} mb-3">
+            <input type="text" name="phone" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}"
+                placeholder="Укажите номер телефона" value="{{ old('phone') }}" required>
+            @if (!$errors->has('phone'))
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-phone"></span>
+                    </div>
+                </div>
+            @endif
+        </div>
+
         <x-input-error :messages="$errors->get('email')" class="mt-2" />
         <div class="{{ $errors->has('email') ? 'input' : 'input-group' }} mb-3">
             <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"

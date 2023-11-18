@@ -25,6 +25,16 @@
 
                 <div class="form-group">
                     <div>
+                        <label for="inputPhone">Номер телефона</label>
+                        <input type="text" id="inputPhone"
+                            class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone"
+                            value="{{ old('phone', $user->phone) }}" required autocomplete="phone">
+                        <x-input-error class="ml-2" :messages="$errors->get('phone')" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
                         <label for="inputEmail">Электронная почта</label>
                         <input type="email" id="inputEmail"
                             class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email"
