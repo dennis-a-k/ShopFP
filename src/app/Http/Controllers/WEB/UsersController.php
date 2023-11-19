@@ -43,9 +43,14 @@ class UsersController extends Controller
      */
     public function store(AddUserRequest $request)
     {
-        $user = $request->validated();
-        dd($user);
-        User::firstOrCreate($user);
+        $request->validated();
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+        ]);;
         return back()->with('status', 'user-created');
     }
 
