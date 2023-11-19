@@ -59,7 +59,7 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('pages.users.user', ['user' => User::find($id)]);
     }
 
     /**
@@ -67,8 +67,8 @@ class UsersController extends Controller
      */
     public function update(RoleUserRequest $request, string $id)
     {
-        $data = $request->validated();
-        User::where('id', $id)->update(['role' => $data['role']]);
+        $request->validated();
+        User::where('id', $id)->update(['role' => $request->role]);
         return back();
     }
 
