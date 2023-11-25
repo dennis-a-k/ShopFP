@@ -57,13 +57,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('users.list') }}" class="nav-link">
+                            <a href="{{ route('category.list') }}" class="nav-link">
                                 <i class="fas fa-tags nav-icon"></i>
                                 <p>Категории</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('user.create') }}" class="nav-link">
+                            <a href="{{ route('product.create') }}" class="nav-link">
                                 <i class="far fa-plus-square nav-icon"></i>
                                 <p>Добавить товар</p>
                             </a>
