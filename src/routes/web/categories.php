@@ -1,13 +1,16 @@
 <?php
 
+use App\Http\Controllers\WEB\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth')->group(function () {
-    // Route::get('/admin/admins', [UsersController::class, 'getAdmins'])->name('admins.list');
-    // Route::get('/admin/users', [UsersController::class, 'getUsers'])->name('users.list');
-    // Route::get('/admin/create_user', [UsersController::class, 'create'])->name('user.create');
-    // Route::post('/admin/create_user', [UsersController::class, 'store'])->name('user.store');
-    // Route::get('/admin/user/{id}', [UsersController::class, 'show'])->name('user.show');
-    // Route::patch('/admin/user/{id}', [UsersController::class, 'update'])->name('user.update');
-    // Route::delete('/admin/user', [UsersController::class, 'destroy'])->name('user.destroy');
+Route::group([
+    'prefix' => '/admin/category',
+    'middleware' => 'auth',
+], function () {
+    Route::get('/list', [CategoriesController::class, 'index'])->name('category.list');
+    Route::get('/create', [CategoriesController::class, 'create'])->name('category.create');
+    Route::post('/create', [CategoriesController::class, 'store'])->name('category.store');
+    Route::get('/{id}', [CategoriesController::class, 'show'])->name('category.show');
+    Route::patch('/{id}', [CategoriesController::class, 'update'])->name('category.update');
+    Route::delete('/{id}', [CategoriesController::class, 'destroy'])->name('category.destroy');
 });
