@@ -43,9 +43,14 @@ class UsersController extends Controller
      */
     public function store(AddUserRequest $request)
     {
-        $user = $request->validated();
-        dd($user);
-        User::firstOrCreate($user);
+        $request->validated();
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+        ]);;
         return back()->with('status', 'user-created');
     }
 
@@ -54,7 +59,7 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('pages.users.user', ['user' => User::find($id)]);
     }
 
     /**
@@ -62,8 +67,8 @@ class UsersController extends Controller
      */
     public function update(RoleUserRequest $request, string $id)
     {
-        $data = $request->validated();
-        User::where('id', $id)->update(['role' => $data['role']]);
+        $request->validated();
+        User::where('id', $id)->update(['role' => $request->role]);
         return back();
     }
 
