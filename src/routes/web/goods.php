@@ -1,13 +1,16 @@
 <?php
 
+use App\Http\Controllers\WEB\GoodsController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth')->group(function () {
-    // Route::get('/admin/admins', [UsersController::class, 'getAdmins'])->name('admins.list');
-    // Route::get('/admin/users', [UsersController::class, 'getUsers'])->name('users.list');
-    // Route::get('/admin/create_user', [UsersController::class, 'create'])->name('user.create');
-    // Route::post('/admin/create_user', [UsersController::class, 'store'])->name('user.store');
-    // Route::get('/admin/user/{id}', [UsersController::class, 'show'])->name('user.show');
-    // Route::patch('/admin/user/{id}', [UsersController::class, 'update'])->name('user.update');
-    // Route::delete('/admin/user', [UsersController::class, 'destroy'])->name('user.destroy');
+Route::group([
+    'prefix' => '/admin/product',
+    'middleware' => 'auth',
+], function () {
+    Route::get('/list', [GoodsController::class, 'index'])->name('product.list');
+    Route::get('/create', [GoodsController::class, 'create'])->name('product.create');
+    Route::post('/create', [GoodsController::class, 'store'])->name('product.store');
+    Route::get('/{id}', [GoodsController::class, 'show'])->name('product.show');
+    Route::patch('/{id}', [GoodsController::class, 'update'])->name('product.update');
+    Route::delete('/{id}', [GoodsController::class, 'destroy'])->name('product.destroy');
 });

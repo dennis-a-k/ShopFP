@@ -20,7 +20,7 @@ class GoodsController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.goods.add-product');
     }
 
     /**
