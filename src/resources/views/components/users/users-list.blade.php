@@ -51,14 +51,14 @@
                                 </td>
 
                                 <td class="project-actions text-right">
-                                    @include('components.edit-user-modal')
+                                    @include('components.users.edit-user-modal')
 
                                     <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}"
                                         data-toggle="tooltip" data-placement="top" title="Посмотреть профиль">
                                         <i class="fas fa-eye"></i>
                                     </a>
 
-                                    @include('components.delete-user-modal')
+                                    @include('components.users.delete-user-modal')
                                 </td>
                             </tr>
                         @endforeach

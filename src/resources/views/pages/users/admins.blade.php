@@ -22,7 +22,7 @@
 
 @section('content')
     <!-- Admins List -->
-    @include('components.users-list')
+    @include('components.users.users-list')
     <!-- /.admins-list -->
     {{ $users->onEachSide(0)->links() }}
 @endsection

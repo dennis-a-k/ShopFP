@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
 
-                                @include('components.orders-list')
+                                @include('components.users.orders-list')
 
                             </div>
                         </div>

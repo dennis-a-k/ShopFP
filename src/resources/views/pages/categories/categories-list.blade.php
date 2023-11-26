@@ -34,7 +34,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    @include('components.add-category-modal')
+                    @include('components.categories.add-category-modal')
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0">
@@ -58,7 +58,7 @@
                                         <td>{{ $category->title }}</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
-                                                @include('components.edit-category-modal')
+                                                @include('components.categories.edit-category-modal')
 
                                                 <button class="btn btn-danger btn-xs" data-toggle="modal"
                                                     data-target="#modalDelete" data-placement="top"
@@ -67,7 +67,7 @@
                                                 </button>
                                             </div>
 
-                                            @include('components.delete-category-modal')
+                                            @include('components.categories.delete-category-modal')
                                         </td>
                                     </tr>
                                 @endforeach
