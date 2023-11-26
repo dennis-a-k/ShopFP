@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ URL::asset('adminlte/dist/css/adminlte.min.css') }}">
-    <!-- overlayScrollbars -->
-    {{-- <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}"> --}}
     <!-- Vite -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
