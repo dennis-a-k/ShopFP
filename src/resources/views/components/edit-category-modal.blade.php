@@ -1,4 +1,5 @@
-<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEdit" data-placement="top" title="Редактировать">
+<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEdit" data-placement="top"
+    data-category="{{ $category }}" title="Редактировать">
     <i class="fas fa-pencil-alt"></i>
 </button>
 
@@ -15,15 +16,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{ route('category.store') }}">
+            <form method="POST" action="{{ route('category.update') }}">
                 @csrf
+                @method('PATCH')
                 <div class="modal-body">
                     <div class="form-group">
                         <div>
                             <label for="inputCategory">Название серии</label>
                             <input type="text" id="inputCategory"
-                                class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" name="title"
-                                value="{{ old('title') }}" required autofocus autocomplete="title">
+                                class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }} modal-title"
+                                name="title" value="" required autofocus autocomplete="title">
                             <x-input-error class="ml-2" :messages="$errors->get('title')" />
                         </div>
                     </div>
@@ -33,8 +35,8 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Отменить
                     </button>
-                    <button type="submit" class="btn btn-info">
-                        Добавить
+                    <button type="submit" class="btn btn-info modal-id" name="id" value="">
+                        Сохранить
                     </button>
                 </div>
             </form>

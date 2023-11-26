@@ -63,55 +63,6 @@
 
                                         @include('components.delete-category-modal')
                                     </td>
-                                    {{-- <td>
-                                    <div class="btn-group btn-group-sm">
-                                        <button class="btn btn-info btn-xs" data-toggle="modal-edit"
-                                            data-target="#staticBackdrop" data-placement="top" data-id="" data-name=""
-                                            title="Редактировать">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-xs" data-toggle="modal-delete"
-                                            data-target="#staticBackdrop" data-placement="top" data-id="" data-name=""
-                                            title="Удалить">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-
-                                    <!-- Модальное окно -->
-                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
-                                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="staticBackdropLabel">
-                                                        Подтвердите дейсвие
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h5 class="modal-text text-center">Удалить?</h5>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                        Отменить
-                                                    </button>
-
-                                                    <form method="POST" action="{{ route('user.destroy') }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger modal-id"
-                                                            name="id" value="">
-                                                            Удалить
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
@@ -129,15 +80,14 @@
         //всплывающие подсказки над кнопками
         $('[data-toggle="modal"]').tooltip();
 
-        //модалка для удаления категории
-        $('#staticBackdrop').on('show.bs.modal', function(event) {
-            const button = $(event.relatedTarget)
-            const id = button.data('id')
-            const name = button.data('name')
+        //модалка для редактирования категории
+        $('#modalEdit').on('show.bs.modal', function(event) {
+            const button = $(event.relatedTarget);
+            const category = button.data('category');
 
-            const modal = $(this)
-            modal.find('.modal-text').text('Удалить ' + name + '? ')
-            modal.find('.modal-id').attr('value', id)
+            const modal = $(this);
+            modal.find('.modal-title').attr('value', category['title']);
+            modal.find('.modal-id').attr('value', category['id']);
         })
     </script>
 @endsection

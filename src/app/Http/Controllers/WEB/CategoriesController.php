@@ -19,14 +19,6 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(CategoryRequest $request)
@@ -36,28 +28,15 @@ class CategoriesController extends Controller
         return back()->with('status', 'category-created');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request)
     {
-        //
+        $request->validated();
+        Category::where('id', $request->id)->update(['title' => $request->title]);
+        return back()->with('status', 'category-updated');
     }
 
     /**
