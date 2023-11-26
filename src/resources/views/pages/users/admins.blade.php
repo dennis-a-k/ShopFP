@@ -41,7 +41,7 @@
             const name = button.data('name')
 
             const modal = $(this)
-            modal.find('.modal-text').text('Удалить ' + name + '? ')
+            modal.find('.modal-text').text('Удалить ' + name + '?')
             modal.find('.modal-id').attr('value', id)
         })
     </script>
