@@ -39,34 +39,40 @@
                 <!-- /.card-header -->
                 <div class="card-body p-0">
                     <table class="table table-sm">
-                        <thead>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th style="width: auto">Серия</th>
-                                <th style="width: 40px"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($categories as $key => $category)
+                        @if (!isset($categories[0]))
+                            <thead>
+                                <h5 class="text-info text-center mt-2">Категории не созданы</h5>
+                            </thead>
+                        @else
+                            <thead>
                                 <tr>
-                                    <td>{{ $key + 1 }}.</td>
-                                    <td>{{ $category->title }}</td>
-                                    <td>
-                                        <div class="btn-group btn-group-xs">
-                                            @include('components.edit-category-modal')
-
-                                            <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                                data-target="#modalDelete" data-placement="top"
-                                                data-category="{{ $category }}" title="Удалить">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-
-                                        @include('components.delete-category-modal')
-                                    </td>
+                                    <th style="width: 10px">#</th>
+                                    <th style="width: auto">Серия</th>
+                                    <th style="width: 40px"></th>
                                 </tr>
-                            @endforeach
-                        </tbody>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $key => $category)
+                                    <tr>
+                                        <td>{{ $key + 1 }}.</td>
+                                        <td>{{ $category->title }}</td>
+                                        <td>
+                                            <div class="btn-group btn-group-xs">
+                                                @include('components.edit-category-modal')
+
+                                                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                    data-target="#modalDelete" data-placement="top"
+                                                    data-category="{{ $category }}" title="Удалить">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+
+                                            @include('components.delete-category-modal')
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        @endif
                     </table>
                 </div>
                 <!-- /.card-body -->
