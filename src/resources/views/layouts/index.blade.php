@@ -13,12 +13,13 @@
     <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    @yield('css')
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ URL::asset('adminlte/dist/css/adminlte.min.css') }}">
     <!-- Vite -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-
-    @yield('css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
