@@ -56,7 +56,8 @@
                                             @include('components.edit-category-modal')
 
                                             <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                                data-target="#modalDelete" data-placement="top" title="Удалить">
+                                                data-target="#modalDelete" data-placement="top"
+                                                data-category="{{ $category }}" title="Удалить">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </div>
@@ -87,6 +88,16 @@
 
             const modal = $(this);
             modal.find('.modal-title').attr('value', category['title']);
+            modal.find('.modal-id').attr('value', category['id']);
+        })
+
+        //модалка для удаления категории
+        $('#modalDelete').on('show.bs.modal', function(event) {
+            const button = $(event.relatedTarget);
+            const category = button.data('category');
+
+            const modal = $(this);
+            modal.find('.modal-text').text('Удалить ' + category['title'] + '?')
             modal.find('.modal-id').attr('value', category['id']);
         })
     </script>
