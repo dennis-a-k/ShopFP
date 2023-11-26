@@ -3,6 +3,9 @@
 @section('title', 'Добавление товара')
 
 @section('css')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/select2/css/select2.min.css') }}">
+
     <style type="text/css">
         .error-login {
             font-size: 80%;
@@ -32,25 +35,38 @@
 @section('content')
     <form method="POST" action="{{ route('user.store') }}">
         @csrf
-        <div class="row">
-            <!-- Information Form-->
-            @include('components.add-user-information')
-            <!-- /.information-form -->
+        <div class="card-body">
+            <div class="row">
+                <!-- Information Form-->
+                @include('components.goods.add-product-information')
+                <!-- /.information-form -->
 
-            <!-- Password form -->
-            @include('components.add-user-password')
-            <!-- /.password-form-->
+                <!-- Password form -->
+                {{-- @include('components.add-user-password') --}}
+                <!-- /.password-form-->
+            </div>
         </div>
 
         <div class="row pb-4">
             <div class="col-12">
-                @if (session('status') === 'user-created')
+                @if (session('status') === 'product-created')
                     <span x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-                        class="text-sm text-info text-align-center mr-2">Пользователь создан</span>
+                        class="text-sm text-info text-align-center mr-2">Товар создан</span>
                 @endif
 
                 <button type="submit" class="btn btn-info float-right">Создать</button>
             </div>
         </div>
     </form>
+@endsection
+
+@section('js')
+    <!-- Select2 -->
+    <script src="{{ URL::asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.select2').select2()
+        })
+    </script>
 @endsection
