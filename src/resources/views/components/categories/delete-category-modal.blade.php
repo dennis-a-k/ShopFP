@@ -11,26 +11,19 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="{{ route('category.store') }}">
+            <form method="POST" action="{{ route('category.destroy') }}">
                 @csrf
+                @method('DELETE')
                 <div class="modal-body">
-                    <div class="form-group">
-                        <div>
-                            <label for="inputCategory">Название серии</label>
-                            <input type="text" id="inputCategory"
-                                class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" name="title"
-                                value="{{ old('title') }}" required autofocus autocomplete="title">
-                            <x-input-error class="ml-2" :messages="$errors->get('title')" />
-                        </div>
-                    </div>
+                    <h5 class="modal-text text-center">Удалить?</h5>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Отменить
                     </button>
-                    <button type="submit" class="btn btn-info">
-                        Добавить
+                    <button type="submit" class="btn btn-danger modal-id" name="id" value="">
+                        Удалить
                     </button>
                 </div>
             </form>

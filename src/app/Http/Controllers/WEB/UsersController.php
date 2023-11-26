@@ -77,10 +77,6 @@ class UsersController extends Controller
      */
     public function destroy(Request $request)
     {
-        $request->validate([
-            'id' => ['required', 'string'],
-        ]);
-
         User::find($request->id)->delete();
         return back();
     }

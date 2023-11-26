@@ -35,11 +35,11 @@
 @section('content')
     <div class="row">
         <!-- Update Profile -->
-        @include('components.update-profile-information-form')
+        @include('components.auth.update-profile-information-form')
         <!-- /.update-profile -->
 
         <!-- Update Profile -->
-        @include('components.update-password-form')
+        @include('components.auth.update-password-form')
         <!-- /.update-profile -->
     </div>
 @endsection

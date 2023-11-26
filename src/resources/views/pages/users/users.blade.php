@@ -22,7 +22,7 @@
 
 @section('content')
     <!-- Admins List -->
-    @include('components.users-list')
+    @include('components.users.users-list')
     <!-- /.admins-list -->
     {{ $users->onEachSide(0)->links() }}
 @endsection
@@ -41,7 +41,7 @@
             const name = button.data('name')
 
             const modal = $(this)
-            modal.find('.modal-text').text('Удалить ' + name + '? ')
+            modal.find('.modal-text').text('Удалить ' + name + '?')
             modal.find('.modal-id').attr('value', id)
         })
     </script>

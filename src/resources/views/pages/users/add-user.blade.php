@@ -34,11 +34,11 @@
         @csrf
         <div class="row">
             <!-- Information Form-->
-            @include('components.add-user-information')
+            @include('components.users.add-user-information')
             <!-- /.information-form -->
 
             <!-- Password form -->
-            @include('components.add-user-password')
+            @include('components.users.add-user-password')
             <!-- /.password-form-->
         </div>
 
