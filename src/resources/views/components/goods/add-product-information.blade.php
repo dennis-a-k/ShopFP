@@ -36,8 +36,8 @@
             </div>
 
             <div class="form-group">
-                <label>Описание</label>
-                <textarea class="form-control" rows="3" placeholder="Описание товара"></textarea>
+                <label for="summernote">Описание</label>
+                <textarea class="form-control" id="summernote"></textarea>
             </div>
         </div>
     </div>
