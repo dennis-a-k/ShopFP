@@ -5,6 +5,8 @@
 @section('css')
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/select2/css/select2.min.css') }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">
 
     <style type="text/css">
         .error-login {
@@ -33,7 +35,7 @@
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ route('user.store') }}">
+    <form method="POST" action="{{ route('product.store') }}">
         @csrf
         <div class="card-body">
             <div class="row">
@@ -63,10 +65,26 @@
 @section('js')
     <!-- Select2 -->
     <script src="{{ URL::asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ URL::asset('adminlte/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ URL::asset('adminlte/plugins/summernote/lang/summernote-ru-RU.min.js') }}"></script>
 
     <script type="text/javascript">
         $(function() {
-            $('.select2').select2()
+            // Select2
+            $('.select2').select2();
+            // Summernote
+            $('#summernote').summernote({
+                lang: 'ru-RU',
+                placeholder: 'Описание товара',
+                minHeight: 200,
+                disableDragAndDrop: true,
+                shortcuts: false,
+                dialogsInBody: false,
+                toolbar: [
+                    ['para', ['ul']],
+                ],
+            });
         })
     </script>
 @endsection

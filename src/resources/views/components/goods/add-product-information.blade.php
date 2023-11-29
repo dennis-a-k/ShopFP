@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="selectCategories">Категория</label>
-                <select class="form-control select2" style="width: 100%;" id="selectCategories">
+                <select class="form-control select2" style="width: 100%;" id="selectCategories" name="category">
                     <option selected="selected" disabled>Выберете категорию</option>
                     @foreach ($categories as $category)
                         <option>{{ $category->title }}</option>
@@ -36,8 +36,8 @@
             </div>
 
             <div class="form-group">
-                <label>Описание</label>
-                <textarea class="form-control" rows="3" placeholder="Описание товара"></textarea>
+                <label for="summernote">Описание</label>
+                <textarea class="form-control" id="summernote" name="description"></textarea>
             </div>
         </div>
     </div>

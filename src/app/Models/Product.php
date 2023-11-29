@@ -17,4 +17,9 @@ class Product extends Model
      * @var array<int, string>
      */
     protected $fillable = [];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('price', 5, 2)->unsigned()->default(0.00);
             $table->foreignId('category_id')->nullable()->index()->constrained('categories')->onDelete('cascade');
             $table->foreignId('image_id')->nullable()->index()->constrained('images')->onDelete('cascade');
-            $table->text('descroption')->nullable();
+            $table->text('description')->nullable();
             $table->integer('count')->unsigned()->default(0);
             $table->boolean('is_published')->default(true);
             $table->timestamps();
