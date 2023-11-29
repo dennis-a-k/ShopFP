@@ -35,7 +35,7 @@
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ route('user.store') }}">
+    <form method="POST" action="{{ route('product.store') }}">
         @csrf
         <div class="card-body">
             <div class="row">
@@ -80,6 +80,7 @@
                 minHeight: 200,
                 disableDragAndDrop: true,
                 shortcuts: false,
+                dialogsInBody: false,
                 toolbar: [
                     ['para', ['ul']],
                 ],
