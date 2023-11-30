@@ -27,10 +27,10 @@
 
             <div class="form-group">
                 <label for="selectCategories">Категория</label>
-                <select class="form-control select2" style="width: 100%;" id="selectCategories" name="category">
+                <select class="form-control select2" style="width: 100%;" id="selectCategories" name="category_id">
                     <option selected="selected" disabled>Выберете категорию</option>
                     @foreach ($categories as $category)
-                        <option>{{ $category->title }}</option>
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
                     @endforeach
                 </select>
             </div>

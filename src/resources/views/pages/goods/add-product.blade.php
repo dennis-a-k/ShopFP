@@ -43,9 +43,9 @@
                 @include('components.goods.add-product-information')
                 <!-- /.information-form -->
 
-                <!-- Password form -->
-                {{-- @include('components.add-user-password') --}}
-                <!-- /.password-form-->
+                <!-- Images form -->
+                @include('components.goods.add-product-images')
+                <!-- /.images-form-->
             </div>
         </div>
 
@@ -68,6 +68,8 @@
     <!-- Summernote -->
     <script src="{{ URL::asset('adminlte/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ URL::asset('adminlte/plugins/summernote/lang/summernote-ru-RU.min.js') }}"></script>
+    <!-- bs-custom-file-input -->
+    <script src="{{ URL::asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 
     <script type="text/javascript">
         $(function() {
