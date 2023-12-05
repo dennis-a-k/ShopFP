@@ -16,10 +16,21 @@ class Product extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'article',
+        'title',
+        'category_id',
+        'description',
+        'imgs',
+    ];
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function images()
+    {
+        return $this->belongsTo(Image::class, 'image_id', 'id');
     }
 }

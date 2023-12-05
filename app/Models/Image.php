@@ -17,4 +17,9 @@ class Image extends Model
      * @var array<int, string>
      */
     protected $fillable = [];
+
+    public function product()
+    {
+        return $this->hasOne(Product::class);
+    }
 }

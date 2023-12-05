@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="form-group">
                 <div>
-                    <label for="inputArticle">Артикул</label>
+                    <label for="inputArticle">Артикул <small class="text-red">(обязательно)</small></label>
                     <input type="text" id="inputArticle"
                         class="form-control {{ $errors->has('article') ? 'is-invalid' : '' }}" name="article"
                         value="{{ old('article') }}" required autofocus autocomplete="article">
@@ -17,7 +17,7 @@
 
             <div class="form-group">
                 <div>
-                    <label for="inputTitle">Наименование</label>
+                    <label for="inputTitle">Наименование <small class="text-red">(обязательно)</small></label>
                     <input type="text" id="inputTitle"
                         class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" name="title"
                         value="{{ old('title') }}" required autocomplete="title">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group">
-                <label for="selectCategories">Категория</label>
+                <label for="selectCategories">Категория <small class="text-red">(обязательно)</small></label>
                 <select class="form-control select2" style="width: 100%;" id="selectCategories" name="category_id">
                     <option selected="selected" disabled>Выберете категорию</option>
                     @foreach ($categories as $category)

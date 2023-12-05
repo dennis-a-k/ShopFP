@@ -35,7 +35,7 @@
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ route('product.store') }}">
+    <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             <div class="row">
@@ -73,13 +73,15 @@
 
     <script type="text/javascript">
         $(function() {
+            // bs-custom-file-input
+            bsCustomFileInput.init();
             // Select2
             $('.select2').select2();
             // Summernote
             $('#summernote').summernote({
                 lang: 'ru-RU',
                 placeholder: 'Описание товара',
-                minHeight: 200,
+                minHeight: 156,
                 disableDragAndDrop: true,
                 shortcuts: false,
                 dialogsInBody: false,
