@@ -35,7 +35,7 @@
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ route('product.store') }}">
+    <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             <div class="row">
