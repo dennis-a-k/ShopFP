@@ -5,7 +5,9 @@ namespace App\Http\Controllers\WEB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GoodsController extends Controller
 {
@@ -31,7 +33,21 @@ class GoodsController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $imgs = [];
+
         $data = $request->validated();
+
+        foreach ($data['imgs'] as $img) {
+
+        }
+
+        $data['imgs'] = Storage::disk('public')->put('/images', );
+        // Product::create([
+        //     'article' => $request->article,
+        //     'title' => $request->title,
+        //     'category_id' => $request->category_id,
+        //     'description' => $request->description,
+        // ]);
         dd($data);
     }
 
