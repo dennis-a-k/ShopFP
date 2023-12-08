@@ -23,10 +23,6 @@ class ImageRequest extends FormRequest
     {
         return [
             'img' => ['nullable', 'string'],
-            'img_2' => ['nullable', 'string'],
-            'img_3' => ['nullable', 'string'],
-            'img_4' => ['nullable', 'string'],
-            'img_5' => ['nullable', 'string'],
         ];
     }
 }

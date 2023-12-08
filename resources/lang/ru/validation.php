@@ -153,6 +153,7 @@ return [
     'attributes' => [
         'address'               => 'Адрес',
         'age'                   => 'Возраст',
+        'article'               => 'Артикул',
         'available'             => 'Доступно',
         'author'                => 'Автор',
         'authorization'         => 'Авторизация',
