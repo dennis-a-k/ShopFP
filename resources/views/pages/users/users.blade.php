@@ -30,9 +30,21 @@
 @section('js')
     <script type="text/javascript">
         //всплывающие подсказки над кнопками
-        $('[data-toggle="tooltip"]').tooltip();
-        $('[data-toggle="dropdown"]').tooltip();
-        $('[data-toggle="modal"]').tooltip();
+        $('[data-toggle="tooltip"]').popover({
+            placement: 'top',
+            content: 'Посмотреть профиль',
+            trigger: 'hover',
+        });
+        $('[data-toggle="dropdown"]').popover({
+            placement: 'top',
+            content: 'Редактировать роль',
+            trigger: 'hover',
+        });
+        $('[data-toggle="modal"]').popover({
+            placement: 'top',
+            content: 'Удалить',
+            trigger: 'hover',
+        });
 
         //модалка для удаление пользователя
         $('#staticBackdrop').on('show.bs.modal', function(event) {

@@ -1,7 +1,10 @@
 <section class="col-md-6">
     <div class="card card-info card-outline">
         <div class="card-header">
-            <h3 class="card-title">Фото товара</h3>
+            <h3 class="card-title">
+                Фото товара
+                <i class="far fa-question-circle text-info images"></i>
+            </h3>
         </div>
 
         <div class="card-body">

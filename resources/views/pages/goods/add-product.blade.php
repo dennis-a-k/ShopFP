@@ -71,6 +71,12 @@
 
     <script type="text/javascript">
         $(function() {
+            //всплывающие подсказки над кнопками
+            $('.images').popover({
+                placement: 'bottom',
+                content: 'Размер изображения: не более 50Мб и не выше 1200х1200px',
+                trigger: 'hover',
+            });
             // bs-custom-file-input
             bsCustomFileInput.init();
             // Select2
