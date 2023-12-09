@@ -5,7 +5,10 @@ namespace App\Http\Controllers\WEB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
+use App\Models\Image;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GoodsController extends Controller
 {
@@ -32,7 +35,20 @@ class GoodsController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->validated();
-        dd($data);
+        $product = Product::create($data);
+        if (isset($data['imgs'])) {
+            foreach ($data['imgs'] as $key => $img) {
+                $name = $product->article . '_' . $key . '.' . $img->getClientOriginalExtension();
+                $filePath = Storage::disk('public')->putFileAs('/images', $img, $name);
+                Image::create([
+                    'product_id' => $product->id,
+                    'img' => $filePath,
+                    'url' => url('/storage/' . $filePath),
+                ]);
+            }
+            unset($data['imgs']);
+        }
+        return back()->with('status', 'product-created');
     }
 
     /**

@@ -61,8 +61,8 @@
                                                 @include('components.categories.edit-category-modal')
 
                                                 <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                                    data-target="#modalDelete" data-placement="top"
-                                                    data-category="{{ $category }}" title="Удалить">
+                                                    data-target="#modalDelete" data-category="{{ $category }}"
+                                                    data-content="Удалить">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
@@ -85,7 +85,10 @@
 @section('js')
     <script type="text/javascript">
         //всплывающие подсказки над кнопками
-        $('[data-toggle="modal"]').tooltip();
+        $('[data-toggle="modal"]').popover({
+            placement: 'top',
+            trigger: 'hover',
+        });
 
         //модалка для редактирования категории
         $('#modalEdit').on('show.bs.modal', function(event) {

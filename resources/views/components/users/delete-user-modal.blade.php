@@ -3,8 +3,8 @@
         <i class="fas fa-trash"></i>
     </button>
 @else
-    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#staticBackdrop" data-placement="top"
-        data-id="{{ $user->id }}" data-name="{{ $user->name }}" title="Удалить">
+    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#staticBackdrop" data-id="{{ $user->id }}"
+        data-name="{{ $user->name }}">
         <i class="fas fa-trash"></i>
     </button>
 

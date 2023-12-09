@@ -37,16 +37,14 @@
 @section('content')
     <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
         @csrf
-        <div class="card-body">
-            <div class="row">
-                <!-- Information Form-->
-                @include('components.goods.add-product-information')
-                <!-- /.information-form -->
+        <div class="row">
+            <!-- Information Form-->
+            @include('components.goods.add-product-information')
+            <!-- /.information-form -->
 
-                <!-- Images form -->
-                @include('components.goods.add-product-images')
-                <!-- /.images-form-->
-            </div>
+            <!-- Images form -->
+            @include('components.goods.add-product-images')
+            <!-- /.images-form-->
         </div>
 
         <div class="row pb-4">
@@ -73,6 +71,12 @@
 
     <script type="text/javascript">
         $(function() {
+            //всплывающие подсказки над кнопками
+            $('.images').popover({
+                placement: 'bottom',
+                content: 'Размер изображения: не более 50Мб и не выше 1200х1200px',
+                trigger: 'hover',
+            });
             // bs-custom-file-input
             bsCustomFileInput.init();
             // Select2

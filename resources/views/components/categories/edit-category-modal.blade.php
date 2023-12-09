@@ -1,5 +1,5 @@
-<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEdit" data-placement="top"
-    data-category="{{ $category }}" title="Редактировать">
+<button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalEdit" data-category="{{ $category }}"
+    data-content="Редактировать">
     <i class="fas fa-pencil-alt"></i>
 </button>
 

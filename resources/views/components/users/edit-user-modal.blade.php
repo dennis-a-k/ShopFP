@@ -5,7 +5,7 @@
         </button>
     @else
         <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false" data-placement="top" title="Редактировать роль">
+            aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-pencil-alt"></i>
         </button>
 

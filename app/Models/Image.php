@@ -16,10 +16,14 @@ class Image extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'product_id',
+        'img',
+        'url',
+    ];
 
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->hasOne(Product::class, 'image_id', 'id');
     }
 }

@@ -54,7 +54,7 @@
                                     @include('components.users.edit-user-modal')
 
                                     <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}"
-                                        data-toggle="tooltip" data-placement="top" title="Посмотреть профиль">
+                                        data-toggle="tooltip">
                                         <i class="fas fa-eye"></i>
                                     </a>
 

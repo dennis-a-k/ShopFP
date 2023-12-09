@@ -3,6 +3,7 @@
 return [
     'admin'         => 'Администратор',
     'admin-panel'   => 'Админка',
+    'article'       => 'Артикул',
     'author'        => 'Автор',
     'category'      => 'Категория',
     'change_role'   => 'Изменить роль',
