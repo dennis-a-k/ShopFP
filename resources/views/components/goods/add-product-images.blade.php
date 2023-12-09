@@ -9,8 +9,9 @@
                 <label for="customFile">Главное фото</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFile"
-                        accept="image/png, image/jpeg, image/jpg" name="imgs[]">
+                        accept="image/png, image/jpeg, image/jpg, image/webp" name="imgs[]">
                     <label class="custom-file-label" for="customFile" data-browse="Выбрать">Загрузите фото</label>
+                    <x-input-error class="ml-2" :messages="$errors->get('imgs.0')" />
                 </div>
             </div>
 
@@ -18,8 +19,9 @@
                 <label for="file2">Фото №2</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="file2"
-                        accept="image/png, image/jpeg, image/jpg" name="imgs[]">
+                        accept="image/png, image/jpeg, image/jpg, image/webp" name="imgs[]">
                     <label class="custom-file-label" for="file2" data-browse="Выбрать">Загрузите фото</label>
+                    <x-input-error class="ml-2" :messages="$errors->get('imgs.1')" />
                 </div>
             </div>
 
@@ -27,8 +29,9 @@
                 <label for="file3">Фото №3</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="file3"
-                        accept="image/png, image/jpeg, image/jpg" name="imgs[]">
+                        accept="image/png, image/jpeg, image/jpg, image/webp" name="imgs[]">
                     <label class="custom-file-label" for="file3" data-browse="Выбрать">Загрузите фото</label>
+                    <x-input-error class="ml-2" :messages="$errors->get('imgs.2')" />
                 </div>
             </div>
 
@@ -36,8 +39,9 @@
                 <label for="file4">Фото №4</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="file4"
-                        accept="image/png, image/jpeg, image/jpg" name="imgs[]">
+                        accept="image/png, image/jpeg, image/jpg, image/webp" name="imgs[]">
                     <label class="custom-file-label" for="file4" data-browse="Выбрать">Загрузите фото</label>
+                    <x-input-error class="ml-2" :messages="$errors->get('imgs.3')" />
                 </div>
             </div>
 
@@ -45,8 +49,9 @@
                 <label for="file5">Фото №5</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="file5"
-                        accept="image/png, image/jpeg, image/jpg" name="imgs[]">
+                        accept="image/png, image/jpeg, image/jpg, image/webp" name="imgs[]">
                     <label class="custom-file-label" for="file5" data-browse="Выбрать">Загрузите фото</label>
+                    <x-input-error class="ml-2" :messages="$errors->get('imgs.4')" />
                 </div>
             </div>
 
@@ -54,8 +59,9 @@
                 <label for="file6">Фото №6</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="file6"
-                        accept="image/png, image/jpeg, image/jpg" name="imgs[]">
+                        accept="image/png, image/jpeg, image/jpg, image/webp" name="imgs[]">
                     <label class="custom-file-label" for="file6" data-browse="Выбрать">Загрузите фото</label>
+                    <x-input-error class="ml-2" :messages="$errors->get('imgs.5')" />
                 </div>
             </div>
         </div>
