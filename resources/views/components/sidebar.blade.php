@@ -51,7 +51,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admins.list') }}" class="nav-link">
+                            <a href="{{ route('product.list') }}" class="nav-link">
                                 <i class="fas fa-tshirt nav-icon"></i>
                                 <p>Список товаров</p>
                             </a>

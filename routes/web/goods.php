@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\WEB\GoodsController;
+use App\Http\Controllers\WEB\ProductPublishedController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -12,5 +13,8 @@ Route::group([
     Route::post('/create', [GoodsController::class, 'store'])->name('product.store');
     Route::get('/{id}', [GoodsController::class, 'show'])->name('product.show');
     Route::patch('/{id}', [GoodsController::class, 'update'])->name('product.update');
-    Route::delete('/{id}', [GoodsController::class, 'destroy'])->name('product.destroy');
+    Route::patch('/{id}/update_published', [GoodsController::class, 'updatePublished'])->name('product.update.published');
+    Route::patch('/{id}/update_price', [GoodsController::class, 'updatePrice'])->name('product.update.price');
+    Route::patch('/{id}/update_count', [GoodsController::class, 'updateCount'])->name('product.update.count');
+    Route::delete('/', [GoodsController::class, 'destroy'])->name('product.destroy');
 });

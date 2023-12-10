@@ -17,7 +17,8 @@ class GoodsController extends Controller
      */
     public function index()
     {
-        //
+        $goods = Product::query()->orderBy('article', 'ASC')->get();
+        return view('pages.goods.goods-list', ['goods' => $goods]);
     }
 
     /**
@@ -70,16 +71,46 @@ class GoodsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        Product::where('id', $id)->update($data);
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        Product::find($request->id)->delete();
+        return back();
+    }
+
+    public function updatePublished(Request $request, string $id)
+    {
+        $request->validate([
+            'is_published' => ['required', 'string'],
+        ]);
+        Product::where('id', $id)->update(['is_published' => $request->is_published]);
+        return back();
+    }
+
+    public function updatePrice(Request $request, string $id)
+    {
+        $request->validate([
+            'price' => ['required', 'numeric', 'between:0.00,99999.99'],
+        ]);
+        Product::where('id', $id)->update(['price' => $request->price]);
+        return back();
+    }
+
+    public function updateCount(Request $request, string $id)
+    {
+        $request->validate([
+            'count' => ['required', 'numeric', 'between:0,9999999'],
+        ]);
+        Product::where('id', $id)->update(['count' => $request->count]);
+        return back();
     }
 }
