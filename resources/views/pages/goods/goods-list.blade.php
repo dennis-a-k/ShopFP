@@ -54,7 +54,7 @@
                                     <tr>
                                         <td>{{ $product->article }}</td>
                                         <td>
-                                            <a href="#">{{ $product->title }}</a>
+                                            <a href="#" target="_blank">{{ $product->title }}</a>
                                         </td>
                                         <td>{{ $product->category->title }}</td>
                                         <td>
@@ -68,12 +68,12 @@
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-info btn-xs" data-toggle="modal"
-                                                    data-content="Редактировать">
+                                                <a href="{{ route('product.edit', $product->id) }}"
+                                                    class="btn btn-info btn-xs btn-msg" data-content="Редактировать">
                                                     <i class="fas fa-pencil-alt"></i>
-                                                </button>
+                                                </a>
 
-                                                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                <button class="btn btn-danger btn-xs btn-msg" data-toggle="modal"
                                                     data-target="#modalDelete" data-product="{{ $product }}"
                                                     data-content="Удалить">
                                                     <i class="fas fa-trash"></i>
@@ -98,7 +98,7 @@
 @section('js')
     <script type="text/javascript">
         //всплывающие подсказки над кнопками
-        $('[data-toggle="modal"]').popover({
+        $('.btn-msg').popover({
             placement: 'top',
             trigger: 'hover',
         });

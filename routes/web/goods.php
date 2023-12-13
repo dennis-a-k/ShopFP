@@ -12,6 +12,7 @@ Route::group([
     Route::get('/create', [GoodsController::class, 'create'])->name('product.create');
     Route::post('/create', [GoodsController::class, 'store'])->name('product.store');
     Route::get('/{id}', [GoodsController::class, 'show'])->name('product.show');
+    Route::get('/{id}/edit', [GoodsController::class, 'edit'])->name('product.edit');
     Route::patch('/{id}', [GoodsController::class, 'update'])->name('product.update');
     Route::patch('/{id}/update_published', [GoodsController::class, 'updatePublished'])->name('product.update.published');
     Route::patch('/{id}/update_price', [GoodsController::class, 'updatePrice'])->name('product.update.price');

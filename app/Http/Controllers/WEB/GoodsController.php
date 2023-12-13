@@ -65,7 +65,8 @@ class GoodsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::find($id);
+        return view('pages.goods.edit-product', ['product' => $product]);
     }
 
     /**
