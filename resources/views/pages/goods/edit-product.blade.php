@@ -6,7 +6,7 @@
 
 @section('css')
     <!-- BS Stepper -->
-    <link rel="stylesheet" href="../../plugins/bs-stepper/css/bs-stepper.min.css">
+    <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/bs-stepper/css/bs-stepper.min.css') }}">
 
     <style type="text/css">
         .error-login {
@@ -40,12 +40,9 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
             <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">bs-stepper</h3>
-                </div>
                 <div class="card-body p-0">
                     <div class="bs-stepper">
                         <div class="bs-stepper-header" role="tablist">
@@ -54,7 +51,7 @@
                                 <button type="button" class="step-trigger" role="tab" aria-controls="logins-part"
                                     id="logins-part-trigger">
                                     <span class="bs-stepper-circle">1</span>
-                                    <span class="bs-stepper-label">Logins</span>
+                                    <span class="bs-stepper-label">Информация</span>
                                 </button>
                             </div>
                             <div class="line"></div>
@@ -62,7 +59,7 @@
                                 <button type="button" class="step-trigger" role="tab" aria-controls="information-part"
                                     id="information-part-trigger">
                                     <span class="bs-stepper-circle">2</span>
-                                    <span class="bs-stepper-label">Various information</span>
+                                    <span class="bs-stepper-label">Медиа</span>
                                 </button>
                             </div>
                         </div>
@@ -70,16 +67,21 @@
                             <!-- your steps content here -->
                             <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter email">
+                                    <label for="productTitle">Наименование</label>
+                                    <input type="text" id="productTitle"
+                                        class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="title"
+                                        value="{{ old('title', $product->title) }}" required autofocus autocomplete="title">
+                                    <x-input-error class="ml-2" :messages="$errors->get('title')" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                    <label for="productArticle">Артикул</label>
+                                    <input type="text" id="productArticle"
+                                        class="form-control {{ $errors->has('article') ? 'is-invalid' : '' }}"
+                                        name="article" value="{{ old('title', $product->article) }}" required autofocus
+                                        autocomplete="article">
+                                    <x-input-error class="ml-2" :messages="$errors->get('article')" />
                                 </div>
-                                <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+                                <button class="btn btn-info" onclick="stepper.next()">Далее</button>
                             </div>
                             <div id="information-part" class="content" role="tabpanel"
                                 aria-labelledby="information-part-trigger">
@@ -95,16 +97,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button class="btn btn-info" onclick="stepper.previous()">Назад</button>
+                                <button type="submit" class="btn btn-info">Сохранить</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    Visit <a href="https://github.com/Johann-S/bs-stepper/#how-to-use-it">bs-stepper documentation</a> for
-                    more examples and information about the plugin.
                 </div>
             </div>
             <!-- /.card -->
@@ -114,7 +111,7 @@
 
 @section('js')
     <!-- BS-Stepper -->
-    <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <script src="{{ URL::asset('adminlte/plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
 
     <script type="text/javascript">
         // BS-Stepper Init
