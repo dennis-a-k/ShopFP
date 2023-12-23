@@ -19,11 +19,10 @@ class Image extends Model
     protected $fillable = [
         'product_id',
         'img',
-        'url',
     ];
 
     public function product()
     {
-        return $this->hasOne(Product::class, 'image_id', 'id');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

@@ -27,7 +27,8 @@
 
             <div class="form-group">
                 <label for="selectCategories">Категория <small class="text-red">(обязательно)</small></label>
-                <select class="form-control select2" style="width: 100%;" id="selectCategories" name="category_id">
+                <select class="form-control select2" style="width: 100%;" id="selectCategories" name="category_id"
+                    data-dropdown-css-class="select2-info">
                     <option selected="selected" disabled>Выберете категорию</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->title }}</option>

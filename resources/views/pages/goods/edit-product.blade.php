@@ -7,6 +7,12 @@
 @section('css')
     <!-- BS Stepper -->
     <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/bs-stepper/css/bs-stepper.min.css') }}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/select2/css/select2.min.css') }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">
+    <!-- Ekko Lightbox -->
+    <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.css') }}">
 
     <style type="text/css">
         .error-login {
@@ -64,42 +70,16 @@
                             </div>
                         </div>
                         <div class="bs-stepper-content">
-                            <!-- your steps content here -->
-                            <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
-                                <div class="form-group">
-                                    <label for="productTitle">Наименование</label>
-                                    <input type="text" id="productTitle"
-                                        class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="title"
-                                        value="{{ old('title', $product->title) }}" required autofocus autocomplete="title">
-                                    <x-input-error class="ml-2" :messages="$errors->get('title')" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="productArticle">Артикул</label>
-                                    <input type="text" id="productArticle"
-                                        class="form-control {{ $errors->has('article') ? 'is-invalid' : '' }}"
-                                        name="article" value="{{ old('title', $product->article) }}" required autofocus
-                                        autocomplete="article">
-                                    <x-input-error class="ml-2" :messages="$errors->get('article')" />
-                                </div>
-                                <button class="btn btn-info" onclick="stepper.next()">Далее</button>
-                            </div>
-                            <div id="information-part" class="content" role="tabpanel"
-                                aria-labelledby="information-part-trigger">
-                                <div class="form-group">
-                                    <label for="exampleInputFile">File input</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">Upload</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn-info" onclick="stepper.previous()">Назад</button>
-                                <button type="submit" class="btn btn-info">Сохранить</button>
-                            </div>
+                            <form method="POST" action="{{ route('product.update', $product->id) }}">
+                                @csrf
+                                @method('PATCH')
+
+                                <!-- step 1 content -->
+                                @include('components.goods.edit-product-information')
+
+                                <!-- step 2 content -->
+                                @include('components.goods.edit-product-images')
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -112,11 +92,52 @@
 @section('js')
     <!-- BS-Stepper -->
     <script src="{{ URL::asset('adminlte/plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ URL::asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ URL::asset('adminlte/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ URL::asset('adminlte/plugins/summernote/lang/summernote-ru-RU.min.js') }}"></script>
+    <!-- bs-custom-file-input -->
+    <script src="{{ URL::asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <!-- Ekko Lightbox -->
+    <script src="{{ URL::asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
 
     <script type="text/javascript">
         // BS-Stepper Init
         document.addEventListener('DOMContentLoaded', function() {
             window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+        })
+
+        $(function() {
+            //всплывающие подсказки над кнопками
+            $('.images').popover({
+                placement: 'bottom',
+                content: 'Размер изображения: не более 50Мб и не должен превышать 1200х1200px',
+                trigger: 'hover',
+            });
+            // bs-custom-file-input
+            bsCustomFileInput.init();
+            // Select2
+            $('.select2').select2();
+            // Summernote
+            $('#summernote').summernote({
+                lang: 'ru-RU',
+                placeholder: 'Описание товара',
+                minHeight: 156,
+                disableDragAndDrop: true,
+                shortcuts: false,
+                dialogsInBody: false,
+                toolbar: [
+                    ['para', ['ul']],
+                ],
+            });
+            // Ekko Lightbox
+            $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true
+                });
+            });
         })
     </script>
 @endsection

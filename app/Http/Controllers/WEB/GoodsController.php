@@ -36,15 +36,22 @@ class GoodsController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->validated();
-        $product = Product::create($data);
+        $product = Product::create([
+            'article' => $data['article'],
+            'title' => $data['title'],
+            'category_id' => $data['category_id'],
+            'description' => $data['description'],
+        ]);
         if (isset($data['imgs'])) {
             foreach ($data['imgs'] as $key => $img) {
+                $currentImgs = Image::where('product_id', $product->id)->count();
+                if($currentImgs > 6) continue;
+
                 $name = $product->article . '_' . $key . '.' . $img->getClientOriginalExtension();
                 $filePath = Storage::disk('public')->putFileAs('/images', $img, $name);
                 Image::create([
                     'product_id' => $product->id,
                     'img' => $filePath,
-                    'url' => url('/storage/' . $filePath),
                 ]);
             }
             unset($data['imgs']);
@@ -66,7 +73,11 @@ class GoodsController extends Controller
     public function edit(string $id)
     {
         $product = Product::find($id);
-        return view('pages.goods.edit-product', ['product' => $product]);
+        $categories = Category::query()->orderBy('title', 'ASC')->get();
+        return view('pages.goods.edit-product', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -75,7 +86,22 @@ class GoodsController extends Controller
     public function update(ProductRequest $request, string $id)
     {
         $data = $request->validated();
-        Product::where('id', $id)->update($data);
+        dd($data);
+        $product = Product::where('id', $id)->update($data);
+        if (isset($data['imgs'])) {
+            foreach ($data['imgs'] as $key => $img) {
+                $currentImgs = Image::where('product_id', $product->id)->count();
+                if($currentImgs > 6) continue;
+
+                $name = $product->article . '_' . $key . '.' . $img->getClientOriginalExtension();
+                $filePath = Storage::disk('public')->putFileAs('/images', $img, $name);
+                Image::create([
+                    'product_id' => $product->id,
+                    'img' => $filePath,
+                ]);
+            }
+            unset($data['imgs']);
+        }
         return back();
     }
 
