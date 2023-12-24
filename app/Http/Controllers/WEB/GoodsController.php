@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
@@ -83,11 +84,15 @@ class GoodsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductRequest $request, string $id)
+    public function update(ProductUpdateRequest $request, string $id)
     {
         $data = $request->validated();
-        dd($data);
-        $product = Product::where('id', $id)->update($data);
+        $product = Product::where('id', $id)->update([
+            'article' => $data['article'],
+            'title' => $data['title'],
+            'category_id' => $data['category_id'],
+            'description' => $data['description'],
+        ]);
         if (isset($data['imgs'])) {
             foreach ($data['imgs'] as $key => $img) {
                 $currentImgs = Image::where('product_id', $product->id)->count();
@@ -102,7 +107,7 @@ class GoodsController extends Controller
             }
             unset($data['imgs']);
         }
-        return back();
+        return back()->with('status', 'product-updated');
     }
 
     /**

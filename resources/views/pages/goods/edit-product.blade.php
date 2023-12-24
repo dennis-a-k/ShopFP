@@ -5,8 +5,6 @@
 @endsection
 
 @section('css')
-    <!-- BS Stepper -->
-    <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/bs-stepper/css/bs-stepper.min.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/select2/css/select2.min.css') }}">
     <!-- summernote -->
@@ -46,52 +44,34 @@
 @endsection
 
 @section('content')
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card card-default">
-                <div class="card-body p-0">
-                    <div class="bs-stepper">
-                        <div class="bs-stepper-header" role="tablist">
-                            <!-- your steps here -->
-                            <div class="step" data-target="#logins-part">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="logins-part"
-                                    id="logins-part-trigger">
-                                    <span class="bs-stepper-circle">1</span>
-                                    <span class="bs-stepper-label">Информация</span>
-                                </button>
-                            </div>
-                            <div class="line"></div>
-                            <div class="step" data-target="#information-part">
-                                <button type="button" class="step-trigger" role="tab" aria-controls="information-part"
-                                    id="information-part-trigger">
-                                    <span class="bs-stepper-circle">2</span>
-                                    <span class="bs-stepper-label">Медиа</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="bs-stepper-content">
-                            <form method="POST" action="{{ route('product.update', $product->id) }}">
-                                @csrf
-                                @method('PATCH')
+    <form method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
 
-                                <!-- step 1 content -->
-                                @include('components.goods.edit-product-information')
+        <div class="row">
+            <!-- Information Form-->
+            @include('components.goods.edit-product-information')
+            <!-- /.information-form -->
 
-                                <!-- step 2 content -->
-                                @include('components.goods.edit-product-images')
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.card -->
+            <!-- Images form -->
+            @include('components.goods.edit-product-images')
+            <!-- /.images-form-->
         </div>
-    </div>
+
+        <div class="row pb-4">
+            <div class="col-12">
+                @if (session('status') === 'product-updated')
+                    <span x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
+                        class="text-sm text-info text-align-center mr-2">Данные изменены</span>
+                @endif
+
+                <button type="submit" class="btn btn-info float-right">Сохранить</button>
+            </div>
+        </div>
+    </form>
 @endsection
 
 @section('js')
-    <!-- BS-Stepper -->
-    <script src="{{ URL::asset('adminlte/plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ URL::asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
     <!-- Summernote -->
@@ -103,11 +83,6 @@
     <script src="{{ URL::asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
 
     <script type="text/javascript">
-        // BS-Stepper Init
-        document.addEventListener('DOMContentLoaded', function() {
-            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-        })
-
         $(function() {
             //всплывающие подсказки над кнопками
             $('.images').popover({
@@ -123,7 +98,7 @@
             $('#summernote').summernote({
                 lang: 'ru-RU',
                 placeholder: 'Описание товара',
-                minHeight: 156,
+                minHeight: 292,
                 disableDragAndDrop: true,
                 shortcuts: false,
                 dialogsInBody: false,
